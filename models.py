@@ -1,10 +1,13 @@
+
+#choice is a function from Python’s random module.
 from random import choice
+
+#QTimer is a class from the PyQt6 library. It is a timer that can call a function repeatedly at a set interval.
 from PyQt6.QtCore import QTimer
 
 class Signal:
     RED = 0
     GREEN = 1
-
     def __init__(self):
         self.aspect = Signal.RED
 
@@ -25,7 +28,7 @@ class AutomaticSensors:
 
         self.sensor_timer = QTimer()
         self.sensor_timer.timeout.connect(self.update_sensors)
-        self.sensor_timer.start(1000)
+        self.sensor_timer.start(1000) #Starts the timer, firing every 1000 milliseconds (1 second).
 
     def update_sensors(self):
         if self.mode == "automatic":

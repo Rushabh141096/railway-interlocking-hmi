@@ -1,22 +1,37 @@
+#Imports Python’s system module Used here to: Access command-line arguments
 import sys
-from PyQt6.QtWidgets import QApplication
-from models import AutomaticSensors
-from logics import InterlockingLogic
-from Gui import InterlockingGUI
-# from plc_sensors import PLCReader
 
+# Imports QApplication, which is:
+# The core object required for any PyQt GUI
+# Manages the event loop, widgets, and user interaction
+from PyQt6.QtWidgets import QApplication
+
+#Imports AutomaticSensors from models file
+from models import AutomaticSensors
+
+#import logic layer : Implements railway interlocking rules Controls how tracks, routes, and signals interact safely
+from logics import InterlockingLogic
+
+#Imports the graphical user interface
+from Gui import InterlockingGUI
+
+# from plc_sensors import PLCReader
 # from PyQt6.QtCore import QTimer
 
 def main():
+    #Creates the Qt application object sys.argv allows Qt to read command-line options
     app = QApplication(sys.argv)
 
     # Start in automatic mode
     sensors = AutomaticSensors(mode="automatic")
 
+    #pass sensor objects to the logics like kind of input, output
     logic = InterlockingLogic(sensors.track, sensors.route, sensors.signal)
     
+    #create main GUI window
     window = InterlockingGUI(sensors, logic)
     window.show()
+
 
     # # PLC reader (polls PLC periodically)
     # plc_reader = PLCReader(tracks, routes, plc_ip="192.168.0.10")
@@ -25,15 +40,12 @@ def main():
     # plc_timer.timeout.connect(plc_reader.update_sensors)
     # plc_timer.start(500)  # poll PLC every 0.5s
 
-
+    #Starts Qt’s event loop
     sys.exit(app.exec())
 
 if __name__ == "__main__":
     main()
 
-    ### new file can be load here
-
-    ## again new line add here
 
 
 

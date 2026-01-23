@@ -54,12 +54,12 @@ class InterlockingGUI(QWidget):
         self.mode_btn.setText(f"Switch Mode (Current: {self.sensors.mode.capitalize()})")
 
     # Optional: disable toggle buttons in automatic mode
-        if self.sensors.mode == "automatic":
-            self.track_btn.setDisabled(True)
-            self.route_btn.setDisabled(True)
-        else:
-            self.track_btn.setDisabled(False)
-            self.route_btn.setDisabled(False)
+        # if self.sensors.mode == "automatic":
+        #     self.track_btn.setDisabled(True)
+        #     self.route_btn.setDisabled(True)
+        # else:
+        #     self.track_btn.setDisabled(False)
+        #     self.route_btn.setDisabled(False)
 
 
     def update_ui(self):
@@ -80,7 +80,7 @@ class InterlockingGUI(QWidget):
             self.route_label.setStyleSheet("background-color:green; color:white; font-weight:bold; font-size:14px")
         else:
             self.route_label.setText("Route: UNLOCKED")
-            self.route_label.setStyleSheet("background-color:gray; color:white; font-weight:bold; font-size:14px")
+            self.route_label.setStyleSheet("background-color:Red; color:white; font-weight:bold; font-size:14px")
 
         # Signal label
         if self.sensors.signal.aspect == Signal.GREEN:
